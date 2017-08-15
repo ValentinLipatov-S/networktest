@@ -19,7 +19,7 @@
       var node = document.getElementById('node');
     
       socket.on('time', function(timeString) {
-        el.innerHTML = 'Server time: ' + timeString;
+        //el.innerHTML = 'Server time: ' + timeString;
       });
        socket.on('message', function(data) {
          var message = document.createElement("p");
