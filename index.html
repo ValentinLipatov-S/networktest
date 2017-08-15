@@ -1,14 +1,40 @@
 <html>
-  <body>
-    <p id='server-time'></p>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      var el = document.getElementById('server-time');
 
+<body>
+
+  <div id="node"></div>
+  <input type = "text" id = "text" />
+  <input type = "submit" id = "button" />
+
+
+
+
+
+
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+      var node = document.getElementById('node');
+    
       socket.on('time', function(timeString) {
         el.innerHTML = 'Server time: ' + timeString;
       });
-    </script>
-  </body>
+       socket.on('message', function(data) {
+         var message = document.createElement("p");
+         message.innerHTML = data;
+         node.appendChild(message);
+      });
+      var button = document.getElementById("button");
+      button.addEventListener("mousedown", function (e) {
+        socket.send(document.getElementById("text").value());
+      }, false);
+  </script>
+
+
+
+
+</body>
+
 </html>
