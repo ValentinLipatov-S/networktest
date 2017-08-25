@@ -12,25 +12,24 @@
 
 
 
+<script src="/socket.io.js"></script>
+<script>
+  var socket = io.connect('/');
+  socket.on('speed', function (data) {
+    console.log('speed Message Received!');
+    console.log(data);    
+  });
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io();
-      var node = document.getElementById('node');
-    
-      socket.on('time', function(timeString) {
-        //el.innerHTML = 'Server time: ' + timeString;
-      });
-       socket.on('message', function(data) {
-         var message = document.createElement("p");
-         message.innerHTML = data;
-         node.appendChild(message);
-      });
-      var button = document.getElementById("button");
-      button.addEventListener("mousedown", function (e) {
-        socket.send(document.getElementById("text").value);
-      }, false);
-  </script>
+  socket.on('beep', function (data) {
+    console.log('beep Message Received!');    
+    console.log(data);    
+  });
+  socket.emit("beep", {beep : true});
+  socket.emit("change-speed", {"change-speed" : true});
+  socket.emit("ios-connection", {"ios-connection" : true});
+
+
+</script>
 
 
 
